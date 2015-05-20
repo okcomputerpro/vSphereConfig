@@ -1,0 +1,177 @@
+{
+    "NTP":  {
+                "VMHostNtpServer":  [
+                                        "0.fr.pool.ntp.org",
+                                        "1.fr.pool.ntp.org"
+                                    ],
+                "Policy":  "off"
+            },
+    "SSH":  {
+                "Policy":  "on",
+                "SuppressShellWarning":  1
+            },
+    "vSwitchs":  [
+                     {
+                         "Mtu":  1500,
+                         "StandbyNic":  null,
+                         "Name":  "vSwitch0",
+                         "Nic":  [
+                                     "vmnic1",
+                                     "vmnic0"
+                                 ],
+                         "UnusedNic":  null,
+                         "IsFailoverOrderInherited":  null,
+                         "ActiveNic":  [
+                                           "vmnic0",
+                                           "vmnic1"
+                                       ]
+                     },
+                     {
+                         "Mtu":  1500,
+                         "StandbyNic":  null,
+                         "Name":  "vSwitch1",
+                         "Nic":  [
+                                     "vmnic3",
+                                     "vmnic2"
+                                 ],
+                         "UnusedNic":  null,
+                         "IsFailoverOrderInherited":  null,
+                         "ActiveNic":  [
+                                           "vmnic2",
+                                           "vmnic3"
+                                       ]
+                     },
+                     {
+                         "Mtu":  1500,
+                         "StandbyNic":  [
+                                            "vmnic5"
+                                        ],
+                         "Name":  "vSwitch2",
+                         "Nic":  [
+                                     "vmnic4",
+                                     "vmnic5"
+                                 ],
+                         "UnusedNic":  null,
+                         "IsFailoverOrderInherited":  null,
+                         "ActiveNic":  [
+                                           "vmnic4"
+                                       ]
+                     }
+                 ],
+    "Portgroups":  [
+                       {
+                           "VLanId":  1,
+                           "StandbyNic":  null,
+                           "VirtualSwitchName":  "vSwitch2",
+                           "Name":  "VLAN1",
+                           "UnusedNic":  null,
+                           "IsFailoverOrderInherited":  false,
+                           "ActiveNic":  [
+                                             "vmnic5",
+                                             "vmnic4"
+                                         ]
+                       },
+                       {
+                           "VLanId":  2,
+                           "StandbyNic":  null,
+                           "VirtualSwitchName":  "vSwitch2",
+                           "Name":  "VLAN2",
+                           "UnusedNic":  null,
+                           "IsFailoverOrderInherited":  false,
+                           "ActiveNic":  [
+                                             "vmnic5",
+                                             "vmnic4"
+                                         ]
+                       },
+                       {
+                           "VLanId":  3,
+                           "StandbyNic":  [
+                                              "vmnic5"
+                                          ],
+                           "VirtualSwitchName":  "vSwitch2",
+                           "Name":  "VLAN3",
+                           "UnusedNic":  null,
+                           "IsFailoverOrderInherited":  true,
+                           "ActiveNic":  [
+                                             "vmnic4"
+                                         ]
+                       },
+                       {
+                           "VLanId":  0,
+                           "StandbyNic":  null,
+                           "VirtualSwitchName":  "vSwitch0",
+                           "Name":  "VM Network",
+                           "UnusedNic":  null,
+                           "IsFailoverOrderInherited":  false,
+                           "ActiveNic":  [
+                                             "vmnic0",
+                                             "vmnic1"
+                                         ]
+                       }
+                   ],
+    "Vmkernels":  [
+                      {
+                          "VLanId":  0,
+                          "ActiveNic":  [
+                                            "vmnic0",
+                                            "vmnic1"
+                                        ],
+                          "StandbyNic":  null,
+                          "VMotionEnabled":  false,
+                          "IP":  "192.168.0.27",
+                          "DhcpEnabled":  true,
+                          "VirtualSwitchName":  "vSwitch0",
+                          "SubnetMask":  "255.255.255.0",
+                          "Name":  "vmk0",
+                          "UnusedNic":  null,
+                          "IsFailoverOrderInherited":  false,
+                          "PortGroupName":  "Management Network"
+                      },
+                      {
+                          "VLanId":  0,
+                          "ActiveNic":  [
+                                            "vmnic2"
+                                        ],
+                          "StandbyNic":  [
+                                             "vmnic3"
+                                         ],
+                          "VMotionEnabled":  true,
+                          "IP":  "169.254.201.134",
+                          "DhcpEnabled":  true,
+                          "VirtualSwitchName":  "vSwitch1",
+                          "SubnetMask":  "255.255.0.0",
+                          "Name":  "vmk1",
+                          "UnusedNic":  null,
+                          "IsFailoverOrderInherited":  false,
+                          "PortGroupName":  "vMotion-1"
+                      },
+                      {
+                          "VLanId":  0,
+                          "ActiveNic":  [
+                                            "vmnic3"
+                                        ],
+                          "StandbyNic":  [
+                                             "vmnic2"
+                                         ],
+                          "VMotionEnabled":  true,
+                          "IP":  "169.254.126.12",
+                          "DhcpEnabled":  true,
+                          "VirtualSwitchName":  "vSwitch1",
+                          "SubnetMask":  "255.255.0.0",
+                          "Name":  "vmk2",
+                          "UnusedNic":  null,
+                          "IsFailoverOrderInherited":  false,
+                          "PortGroupName":  "vMotion-2"
+                      }
+                  ],
+    "VMHostNetwork":  {
+                          "SearchDomain":  [
+                                               "intranet.cheops.fr"
+                                           ],
+                          "DnsAddress":  [
+                                             "10.44.0.1",
+                                             "10.33.1.12"
+                                         ],
+                          "DomainName":  "intranet.cheops.fr"
+                      }
+}
